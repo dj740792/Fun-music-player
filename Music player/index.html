@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music player UI</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="background">
-        <!-- background -->
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <!-- hero -->
-      <div class="hero-section">
-        <img src="social-media (1).png" alt="logo" />
-        <h1>ECHO</h1>
-      </div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-    <script src="script.js"></script>
-  </body>
+  <div class="app">
+    <div class="player">
+
+      <div class="player-visual">
+        <img class="album-art" src="" alt="album cover">
+      </div>
+
+      <div class="track-info">
+        <h2 class="track-name"></h2>
+        <p class="track-artist"></p>
+      </div>
+
+      <div class="controls">
+        <button class="prev">⏮</button>
+        <button class="play">
+          <img src="play-button.png" alt="">
+        </button>
+        <button class="next">⏭</button>
+      </div>
+
+      <div class="progress-wrapper">
+        <input type="range" class="progress" value="0">
+      </div>
+
+      <div class="song-list">
+        <div class="song-card"></div>
+        <div class="song-card"></div>
+        <div class="song-card"></div>
+        <div class="song-card"></div>
+        <div class="song-card"></div>
+        <div class="song-card"></div>
+      </div>
+
+      <audio id="audio"></audio>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
