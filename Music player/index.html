@@ -7,44 +7,80 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <div class="app">
+  <div class="app" id="app">
     <div class="player">
-
+      <!-- Vinyl Record -->
       <div class="player-visual">
-        <img class="album-art" src="" alt="album cover">
+        <div class="vinyl-container">
+          <div class="vinyl" id="vinyl">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label">
+              <img class="album-cover" id="albumCover" src="../albums/jeff-buckley.jpg" alt="Album cover" />
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- Track Info -->
       <div class="track-info">
-        <h2 class="track-name"></h2>
-        <p class="track-artist"></p>
+        <h2 class="track-name" id="trackName">GRACE</h2>
+        <h3 class="track-artist" id="trackArtist">Jeff Buckley</h3>
       </div>
 
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-fill" id="progressFill">
+            <div class="progress-thumb"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
       <div class="controls">
-        <button class="prev">⏮</button>
-        <button class="play">
-          <img src="play-button.png" alt="">
+        <button class="control-btn" id="shuffleBtn" title="Shuffle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/>
+          </svg>
         </button>
-        <button class="next">⏭</button>
+        <button class="control-btn" id="prevBtn" title="Previous">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="19 20 9 12 19 4 19 20"/><line x1="5" x2="5" y1="19" y2="5"/>
+          </svg>
+        </button>
+        <button class="control-btn play-btn" id="playBtn" title="Play/Pause">
+          <svg id="playIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 3 20 12 6 21 6 3"/>
+          </svg>
+          <svg id="pauseIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+            <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+        <button class="control-btn" id="nextBtn" title="Next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/>
+          </svg>
+        </button>
+        <button class="control-btn" id="repeatBtn" title="Repeat">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+          </svg>
+        </button>
       </div>
 
-      <div class="progress-wrapper">
-        <input type="range" class="progress" value="0">
+      <!-- Song Carousel -->
+      <div class="song-carousel" id="songCarousel">
+        <!-- Songs will be rendered here by JS -->
       </div>
 
-      <div class="song-list">
-        <div class="song-card"></div>
-        <div class="song-card"></div>
-        <div class="song-card"></div>
-        <div class="song-card"></div>
-        <div class="song-card"></div>
-        <div class="song-card"></div>
+      <!-- Footer -->
+      <div class="footer">
+        Built with ♥ by Dhruv ✌
       </div>
-
-      <audio id="audio"></audio>
-
+    </div>
   </div>
 
+  <audio id="audio"></audio>
   <script src="script.js"></script>
 </body>
 </html>
