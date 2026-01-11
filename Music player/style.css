@@ -16,10 +16,7 @@
 }
 
 body {
-  background: linear-gradient(180deg,
-      #c63d3d 0%,
-      #d9a441 45%,
-      #5aa84f 100%);
+  background: #212121
 }
 
 .app {
@@ -32,9 +29,10 @@ body {
 
 .player {
   width: 100%;
-  max-width: 900px;
+  max-width: 60%;
   padding: 40px;
   color: white;
+  scale: 1.05;
 }
 
 .top {
@@ -49,7 +47,7 @@ body {
   font-weight: 800;
   font-size: 74px;
   letter-spacing: 2px;
-  word-spacing: 2px;
+  word-spacing: 1px;
 }
 
 .track-text p {
@@ -63,8 +61,7 @@ body {
   width: 300px;
   height: 300px;
   border-radius: 16px;
-  box-shadow: 0px 0px 10px #c63d3d;
-  border:1px solid #c63d3d ;
+  border:1px solid ;
 
 }
 
@@ -114,11 +111,12 @@ body {
 }
 
 .secondary-btn {
-
+  margin-left: 70px;
   background: none;
   border: none;
   cursor: pointer;
   color: white;
+  margin-right: 70px;
 }
 
 .secondary-btn svg {
@@ -127,17 +125,19 @@ body {
 
 /* Progress */
 .progress-bar {
-  margin: 30px 0;
+  margin: 20px 0;
   width: 100%;
-  height: 5px;
+  height: 8px;
   background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
+  border-radius: 22px;
 }
 
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: white;
+  border-radius: 22px;
+ 
 }
 
 /* Carousel */
@@ -153,18 +153,22 @@ body {
   border-radius: 10px;
   cursor: pointer;
   opacity: 1;
+  transition: ease-out .2s;
 }
 
-.carousel img.active {
+.carousel img:hover {
   opacity: 1;
   outline: 2px solid white;
+  transform: scale(1.1);
 }
+
 
 
 /* Footer */
 .footer {
-  margin-top: 30px;
-  opacity: 0.6;
+  text-align: center;
+  margin-top: 50px;
+  opacity: 0.8;
   font-size: 14px;
 }
 
