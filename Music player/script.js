@@ -34,7 +34,7 @@ const songs = [
     title: "STRANGERS IN THE NIGHT",
     artist: "Frank Sinatra",
     cover: "franksinatra.jpg",
-    audio: "frank.mp3",
+    audio: "frank.flac",
     theme: {
       background:
         "linear-gradient(to bottom, #4e4002, #6a5918, #86732d, #a48e42, #c2aa58, #d0b766, #dfc575, #edd383, #efd58c, #f0d796, #f1d99f, #f2dba8)",
@@ -47,7 +47,7 @@ const songs = [
     cover: "bemybaby.jpg",
     audio: "bemybaby.mp3",
     theme: {
-      background: "linear-gradient(180deg, #f3c6c6 0%, #f6e3e3 100%)",
+      background: "linear-gradient(180deg, #2c1f1a 0%, #5a3b2e 100%)",
       progress: "#c84b4b",
     },
   },
@@ -57,8 +57,8 @@ const songs = [
     cover: "sade.jpg",
     audio: "sade.mp3",
     theme: {
-      background: "linear-gradient(180deg, #2c1f1a 0%, #5a3b2e 100%)",
-      progress: "#c97c5d",
+      background:"linear-gradient(180deg, #f3c6c6 0%, #f6e3e3 100%)",
+      progress: "rgb(232, 161, 227)",
     },
   },
   {
@@ -82,6 +82,8 @@ const albumCover = document.getElementById("albumCover");
 const playBtn = document.getElementById("playBtn");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
+const shuffleBtn = document.getElementById("shufflebtn");
+const repeatBtn = document.getElementById("repeatbtn");
 
 const progressBar = document.getElementById("progressBar");
 const progressFill = document.getElementById("progressFill");
@@ -96,6 +98,8 @@ const audio = new Audio();
 // STATE
 let currentSong = 0;
 let isPlaying = false;
+let isShuffle = false;
+let isRepeat = false;
 
 // LOAD SONG
 function loadSong(index) {
@@ -136,7 +140,7 @@ nextBtn.addEventListener("click", () => {
   currentSong = (currentSong + 1) % songs.length;
   loadSong(currentSong);
   playSong();
-  renderCarousel(); // Update carousel
+  renderCarousel();
 });
 
 prevBtn.addEventListener("click", () => {
@@ -144,6 +148,44 @@ prevBtn.addEventListener("click", () => {
   loadSong(currentSong);
   playSong();
   renderCarousel(); // Update carousel
+});
+
+// SHUFFLE
+shuffleBtn.addEventListener("click", () => {
+  isShuffle = !isShuffle;
+  shuffleBtn.classList.toggle("active", isShuffle);
+});
+
+function goToNextSong() {
+  if (isShuffle) {
+    let nextIndex;
+    do {
+      nextIndex = Math.floor(Math.random() * songs.length);
+    } while (nextIndex === currentSong);
+
+    currentSong = nextIndex;
+  } else {
+    currentSong = (currentSong + 1) % songs.length;
+  }
+
+  loadSong(currentSong);
+  playSong();
+  renderCarousel();
+}
+
+// REPEAT
+repeatBtn.addEventListener("click", () => {
+  isRepeat = !isRepeat;
+  repeatBtn.classList.toggle("active", isRepeat);
+});
+
+audio.addEventListener("ended", () => {
+  if (isRepeat) {
+    audio.currentTime = 0;
+    playSong();
+  } else {
+    goToNextSong();
+  }
 });
 
 // PROGRESS
@@ -175,7 +217,7 @@ function renderCarousel() {
       loadSong(index);
       audio.play();
       isPlaying = true;
-      playSong()
+      playSong();
     });
 
     Carousel.appendChild(img);

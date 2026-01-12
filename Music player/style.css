@@ -36,10 +36,10 @@ body {
 }
 
 .top {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  align-items: center;
-  gap: 40px;
+  display: flex ;
+  justify-content: space-between;
+  align-items:center;
+  gap: 30px;
 }
 
 .track-text h1 {
@@ -61,8 +61,7 @@ body {
   width: 300px;
   height: 300px;
   border-radius: 16px;
-  border: 1px solid;
-
+  box-shadow:20px white;
 }
 
 /* Controls */
@@ -117,11 +116,16 @@ body {
   cursor: pointer;
   color: white;
   margin-right: 70px;
+  transition: ease-out 0.2;
+}
+.secondary-btn:hover {
+ transform: scale(1.1);
 }
 
 .secondary-btn svg {
   fill: white;
 }
+
 
 /* Progress */
 .progress-bar {
@@ -143,14 +147,14 @@ body {
 /* Carousel */
 .carousel {
   display: flex;
-  justify-content: space-around;
-  gap: 25px;
+  justify-content: space-evenly;
+  gap: 15px;
   margin-top: 30px;
 }
 
 .carousel img {
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   cursor: pointer;
   opacity: 1;
@@ -159,14 +163,13 @@ body {
 
 .carousel img:hover {
   opacity: 1;
-  
   transform: scale(1.1);
 }
 
 /* Footer */
 .footer {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 40px;
   opacity: 0.7;
   font-size: 14px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
@@ -212,3 +215,4 @@ body {
 #pauseIcon {
   display: none;
 }
+
