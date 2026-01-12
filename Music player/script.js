@@ -1,5 +1,4 @@
-// SONG COLLECTIONS
-
+// SONG COLLECTION
 const songs = [
   {
     title: "ALL I NEED",
@@ -7,8 +6,7 @@ const songs = [
     cover: "radiohead.jpg",
     audio: "allineed.mp3",
     theme: {
-      background:
-        "linear-gradient(180deg, #c63d3d 0%, #d9a441 45%, #5aa84f 100%)",
+      background: "linear-gradient(180deg,#c63d3d 0%,#d9a441 45%,#5aa84f 100%)",
       progress: "#c63d3d",
     },
   },
@@ -18,8 +16,7 @@ const songs = [
     cover: "jeffbuckley.jpg",
     audio: "jeffsong.mp3",
     theme: {
-      background:
-        "linear-gradient(to bottom, #630378, #6b0288, #720198, #7903a9, #7f06bb, #8516c6, #8a21d2, #902bdd, #983ae5, #a047ec, #a853f4, #b05ffb)",
+      background: "linear-gradient(180deg,#630378,#b05ffb)",
       progress: "#630378",
     },
   },
@@ -29,7 +26,7 @@ const songs = [
     cover: "deftones.jpg",
     audio: "sextape.mp3",
     theme: {
-      background: "linear-gradient(180deg, #1c1c1c 0%, #2b2b2b 100%)",
+      background: "linear-gradient(180deg,#1c1c1c,#2b2b2b)",
       progress: "#bfbfbf",
     },
   },
@@ -76,73 +73,115 @@ const songs = [
   },
 ];
 
-// DOM SELECTORS
+// DOM
 const app = document.getElementById("app");
-
-// Track info
 const trackName = document.getElementById("trackName");
 const trackArtist = document.getElementById("trackArtist");
 const albumCover = document.getElementById("albumCover");
 
-// Controls
 const playBtn = document.getElementById("playBtn");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
-const shuffleBtn = document.getElementById("shuffleBtn");
-const repeatBtn = document.getElementById("repeatBtn");
 
-// Progess
-const progessBar = document.getElementById("progressBar");
+const progressBar = document.getElementById("progressBar");
 const progressFill = document.getElementById("progressFill");
 
-// Carousel
+const playIcon = document.getElementById("playIcon");
+const pauseIcon = document.getElementById("pauseIcon");
 const Carousel = document.getElementById("carousel");
 
-// Audio
-const audio = document.createElement("audio");
+// AUDIO
+const audio = new Audio();
 
+// STATE
 let currentSong = 0;
 let isPlaying = false;
-let isShuffle = false;
-let isRepeat = false;
-updateSong();
 
-prevBtn.addEventListener("click", function () {
-  if (currentSong === 0) {
-    return;
-  }
-  currentSong--;
-  updateSong();
-  audio.play(); // Automatically play the song
-});
+// LOAD SONG
+function loadSong(index) {
+  const song = songs[index];
 
-nextBtn.addEventListener("click", function () {
-  if (currentSong === songs.length - 1) {
-    return;
-  }
-  currentSong++;
-  updateSong();
-  audio.play(); // Automatically play the song
-});
-
-function updateSong() {
-  const song = songs[currentSong];
-  trackName.innerText = song.title;
-  trackArtist.innerText = song.artist;
+  trackName.textContent = song.title;
+  trackArtist.textContent = song.artist;
   albumCover.src = song.cover;
-  document.body.style.background = song.theme.background; // Set background
-  progressFill.style.background = song.theme.progress; // Set progress bar color
+
+  document.body.style.background = song.theme.background;
+  progressFill.style.background = song.theme.progress;
 
   audio.src = song.audio;
+  progressFill.style.width = "0%";
 }
 
-function moveProgessFill() {
-  const progressPercentage = (audio.currentTime / audio.duration) * 100;
-  progressFill.style.width = `${progressPercentage}%`; // Update progress bar width
-}
-
-audio.addEventListener("timeupdate", moveProgessFill);
-
-playBtn.addEventListener("click", function () {
+// PLAY / PAUSE
+function playSong() {
   audio.play();
+  isPlaying = true;
+  playIcon.style.display = "none";
+  pauseIcon.style.display = "block";
+}
+
+function pauseSong() {
+  audio.pause();
+  isPlaying = false;
+  playIcon.style.display = "block";
+  pauseIcon.style.display = "none";
+}
+
+playBtn.addEventListener("click", () => {
+  isPlaying ? pauseSong() : playSong();
 });
+
+// NEXT / PREV
+nextBtn.addEventListener("click", () => {
+  currentSong = (currentSong + 1) % songs.length;
+  loadSong(currentSong);
+  playSong();
+  renderCarousel(); // Update carousel
+});
+
+prevBtn.addEventListener("click", () => {
+  currentSong = (currentSong - 1 + songs.length) % songs.length;
+  loadSong(currentSong);
+  playSong();
+  renderCarousel(); // Update carousel
+});
+
+// PROGRESS
+audio.addEventListener("timeupdate", () => {
+  if (!audio.duration) return;
+  const percent = (audio.currentTime / audio.duration) * 100;
+  progressFill.style.width = percent + "%";
+});
+
+// SEEK
+progressBar.addEventListener("click", (e) => {
+  const rect = progressBar.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = percent * audio.duration;
+});
+
+function renderCarousel() {
+  Carousel.innerHTML = "";
+
+  songs.forEach((song, index) => {
+    const img = document.createElement("img");
+    img.src = song.cover;
+    img.alt = song.title;
+    if (index === currentSong) {
+      return;
+    }
+    img.addEventListener("click", () => {
+      currentSong = index;
+      loadSong(index);
+      audio.play();
+      isPlaying = true;
+      playSong()
+    });
+
+    Carousel.appendChild(img);
+  });
+}
+renderCarousel();
+
+// INIT
+loadSong(currentSong);

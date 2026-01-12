@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'Satoshi-Bold';
   src: url('../fonts/Satoshi-Bold.woff2') format('woff2'),
-       url('../fonts/Satoshi-Bold.woff') format('woff'),
-       url('../fonts/Satoshi-Bold.ttf') format('truetype');
+    url('../fonts/Satoshi-Bold.woff') format('woff'),
+    url('../fonts/Satoshi-Bold.ttf') format('truetype');
   font-weight: 700;
   font-display: swap;
   font-style: normal;
@@ -12,7 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+
 }
 
 body {
@@ -43,7 +43,7 @@ body {
 }
 
 .track-text h1 {
-  font-family:'Satoshi-Black',sans-serif ;
+  font-family: 'Satoshi-Black', sans-serif;
   font-weight: 800;
   font-size: 74px;
   letter-spacing: 2px;
@@ -54,14 +54,14 @@ body {
   opacity: 0.9;
   margin-top: 10px;
   font-size: 30px;
-  font-family:"Satoshi-Bold",sans-serif ;
+  font-family: "Satoshi-Bold", sans-serif;
 }
 
 .track-img img {
   width: 300px;
   height: 300px;
   border-radius: 16px;
-  border:1px solid ;
+  border: 1px solid;
 
 }
 
@@ -137,14 +137,15 @@ body {
   height: 100%;
   width: 0%;
   border-radius: 22px;
- 
+
 }
 
 /* Carousel */
 .carousel {
   display: flex;
-  gap: 14px;
-  margin-top: 20px;
+  justify-content: space-around;
+  gap: 25px;
+  margin-top: 30px;
 }
 
 .carousel img {
@@ -158,17 +159,56 @@ body {
 
 .carousel img:hover {
   opacity: 1;
-  outline: 2px solid white;
+  
   transform: scale(1.1);
 }
-
-
 
 /* Footer */
 .footer {
   text-align: center;
-  margin-top: 50px;
-  opacity: 0.8;
+  margin-top: 60px;
+  opacity: 0.7;
   font-size: 14px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
 }
 
+/* Add animation */
+.play-to-pause {
+  animation: playToPause 0.5s ease-in-out;
+}
+
+.pause-to-play {
+  animation: pauseToPlay 0.5s ease-in-out;
+}
+
+@keyframes playToPause {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pauseToPlay {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#pauseIcon {
+  display: none;
+}
