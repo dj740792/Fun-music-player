@@ -11,13 +11,13 @@ const songs = [
     },
   },
   {
-    title: "GRACE",
+    title: "HALLELUJAH",
     artist: "Jeff Buckley",
     cover: "jeffbuckley.jpg",
     audio: "jeffsong.mp3",
     theme: {
-      background: "linear-gradient(180deg,#630378,#b05ffb)",
-      progress: "#630378",
+      background: "linear-gradient(180deg, #1b121d 0%,   #4a324a 50%,  #7d5c7d 100%)",
+      progress: "#4a324a",
     },
   },
   {
@@ -26,7 +26,7 @@ const songs = [
     cover: "deftones.jpg",
     audio: "sextape.mp3",
     theme: {
-      background: "linear-gradient(180deg,#1c1c1c,#2b2b2b)",
+      background: "linear-gradient(180deg, #0a0b10 0%, #533131 50%, #9c8b7e 100%)",
       progress: "#bfbfbf",
     },
   },
@@ -36,8 +36,7 @@ const songs = [
     cover: "franksinatra.jpg",
     audio: "frank.flac",
     theme: {
-      background:
-        "linear-gradient(to bottom, #4e4002, #6a5918, #86732d, #a48e42, #c2aa58, #d0b766, #dfc575, #edd383, #efd58c, #f0d796, #f1d99f, #f2dba8)",
+      background: "linear-gradient(180deg, #1a1d1a 0%, #7a8d56 50%, #d4cc9e 100%)",
       progress: "#d4af37",
     },
   },
@@ -47,7 +46,7 @@ const songs = [
     cover: "bemybaby.jpg",
     audio: "bemybaby.mp3",
     theme: {
-      background: "linear-gradient(180deg, #2c1f1a 0%, #5a3b2e 100%)",
+      background: "linear-gradient(180deg, #e9d9c7 0%, #c4a88c 50%, #0c5d85 100%)",
       progress: "#c84b4b",
     },
   },
@@ -57,7 +56,7 @@ const songs = [
     cover: "sade.jpg",
     audio: "sade.mp3",
     theme: {
-      background:"linear-gradient(180deg, #f3c6c6 0%, #f6e3e3 100%)",
+      background: "linear-gradient(180deg, #0e0e12 0%, #5c5c6b 50%, #b8b8c0 100%)",
       progress: "rgb(232, 161, 227)",
     },
   },
@@ -67,7 +66,7 @@ const songs = [
     cover: "johnlennon.jpg",
     audio: "lennon.mp3",
     theme: {
-      background: "linear-gradient(180deg, #2f5d50 0%, #a8d5ba 100%)",
+      background: "linear-gradient(180deg, #3c6a71 0%, #7da6ab 50%, #cedbd2 100%)",
       progress: "#4caf50",
     },
   },
@@ -101,6 +100,7 @@ let isPlaying = false;
 let isShuffle = false;
 let isRepeat = false;
 
+
 // LOAD SONG
 function loadSong(index) {
   const song = songs[index];
@@ -115,6 +115,11 @@ function loadSong(index) {
   audio.src = song.audio;
   progressFill.style.width = "0%";
 }
+
+// Add a class to the album cover after the song is loaded
+albumCover.addEventListener("load", () => {
+  albumCover.classList.add("loaded");
+});
 
 // PLAY / PAUSE
 function playSong() {
@@ -218,6 +223,7 @@ function renderCarousel() {
       audio.play();
       isPlaying = true;
       playSong();
+      renderCarousel();
     });
 
     Carousel.appendChild(img);
