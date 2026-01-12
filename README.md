@@ -1,41 +1,28 @@
-# Music Player (Vanilla JS)
+# Music Player
 
-A minimal, aesthetic music player built with plain HTML, CSS, and JavaScript.
+A simple music player built using HTML, CSS, and Vanilla JavaScript.
 
-This project focuses on core audio playback logic and clean UI behavior rather than feature-heavy design.
+This project was made to practice JavaScript fundamentals and DOM manipulation by building a real, working audio player.
 
 ## Features
-- Play / Pause with custom SVG controls
-- Next / Previous track navigation
-- Shuffle mode (Spotify-like behavior)
+- Play / Pause
+- Next & Previous tracks
+- Shuffle mode
 - Repeat current track
-- Dynamic background theme per song
 - Progress bar synced with audio
-- Song carousel (current song excluded from list)
-- Automatic playback on track end
+- Song carousel to switch tracks
+- Background theme changes based on the song
 
-## Tech Stack
-- HTML5 Audio API
-- Vanilla JavaScript
-- CSS Grid & Flexbox
-- Custom SVG icons
+## Tech Used
+- HTML
+- CSS
+- JavaScript (Audio API)
 
 ## What I Learned
-- Managing application state (current track, play state, shuffle, repeat)
-- Syncing UI with audio events
-- Handling edge cases like shuffle without repeating the same song
-- DOM-driven UI rendering (carousel logic)
-- Debugging real-world JavaScript issues (case sensitivity, control flow)
+- Handling audio playback with JavaScript
+- Managing app state (current song, play state, shuffle, repeat)
+- Updating UI based on user interactions
+- Writing cleaner, structured JS logic
 
-## Notes
-This is a personal project built for learning and experimentation.
-It is not intended to be a full streaming app.
+Built with ♥ by Dhruv
 
-## Future Improvements (Optional)
-- Keyboard media controls
-- Save state with localStorage
-- Mobile layout polish
-
----
-
-Built with ❤️ by Dhruv
